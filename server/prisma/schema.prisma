@@ -6,8 +6,28 @@ generator client {
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("DB_URI")
-  directUrl         = env("DIRECT_URI")
+  provider  = "postgresql"
+  url       = env("DB_URI")
+  directUrl = env("DIRECT_URI")
 }
 
+model Player {
+  player_id   Int     @id @default(autoincrement())
+  player_name String
+  player_ppg  Decimal @db.Decimal(4, 1)
+  player_rpg  Decimal @db.Decimal(4, 1)
+  player_apg  Decimal @db.Decimal(4, 1)
+  team_id     Int
+  team        Team    @relation(name: "team_player_relation", fields: [team_id], references: [team_id])
+}
+
+model Team {
+  team_id      Int      @id @default(autoincrement())
+  team_name    String
+  team_players Player[] @relation(name: "team_player_relation")
+}
+
+model Test {
+  test_id        Int    @id @default(autoincrement())
+  test_name      String
+}
