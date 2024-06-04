@@ -21,8 +21,6 @@ export async function fetchPlayerPage(playerName: string): Promise<string>
         `https://www.basketball-reference.com/${firstResultHREF}`
     );
     const firstResultHTML = await firstResult.text();
-    console.log(firstResultHTML);
     return firstResultHTML;
 }
 
-await fetchPlayerPage("Lebron James");
