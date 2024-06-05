@@ -16,8 +16,8 @@ async function gatherPlayerInfos()
         {
             playerInfoArray.push(JSON.parse(info));
         }
-        await wait(10000);
-        if (i === 1)
+        //await wait(5000);
+        if (i === 0)
         {
             break;
         }

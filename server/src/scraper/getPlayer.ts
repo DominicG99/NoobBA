@@ -156,7 +156,7 @@ export async function getPlayer(playerName: string)
 
         // Grab the player's advanced stats
         const advancedStatsRows = $('#div_advanced tbody > tr');
-        const advancedStats = await grabAdvancedStats(advancedStatsRows, $);
+        const advancedStats: any = await grabAdvancedStats(advancedStatsRows, $);
 
         // Grab the player's career advanced stats
         const careerAdvancedStatsRow = $('#div_advanced tfoot > tr').first();

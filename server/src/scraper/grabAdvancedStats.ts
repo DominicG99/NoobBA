@@ -1,13 +1,16 @@
 //@ts-nocheck
 import cheerio from 'cheerio';
 
-export function grabAdvancedStats(statsRow, $): any {
+export function grabAdvancedStats(statsRow, $): any
+{
     const stats = {};
 
-    statsRow.each((index, row) => {
+    statsRow.each((index, row) =>
+    {
         const rowData = $(row);
 
-        if (rowData.find('[data-stat="lg_id"]').text().trim !== 'NBA') {
+        if (rowData.find('[data-stat="lg_id"]').text().trim() !== 'NBA')
+        {
             return;
         }
 

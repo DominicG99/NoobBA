@@ -1,7 +1,8 @@
 //@ts-nocheck
 import cheerio from 'cheerio';
 
-export function grabCareerAdvancedStats(careerStatsRow, $): any {
+export function grabCareerAdvancedStats(careerStatsRow, $): any
+{
     const careerStats = {
         per: parseFloat(careerStatsRow.find('[data-stat="per"]').text().trim()),
         ts_pct: parseFloat(careerStatsRow.find('[data-stat="ts_pct"]').text().trim()),
