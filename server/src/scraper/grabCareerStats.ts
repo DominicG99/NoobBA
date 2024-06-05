@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-export function grabCareerStats(careerStatsRow, $)
+export async function grabCareerStats(careerStatsRow, $)
 {
     const career = {
         games: parseInt(careerStatsRow.find('[data-stat="g"]').text().trim()),

@@ -3,26 +3,10 @@ import { fetchPlayerPage } from "./fetchPlayerPage.js";
 import { grabPlayerSats } from "./grabPlayerStats.js";
 import { grabCareerStats } from "./grabCareerStats.js";
 
-async function getPlayer(playerName: string)
+export async function getPlayer(playerName: string)
 {
     try
     {
-        let playerObj = {
-            name: playerName,
-            accolades: undefined,
-            draftYear: undefined,
-            draftPick: undefined,
-            draftTeam: undefined,
-            shootingHand: undefined,
-            college: undefined,
-            birthplace: undefined,
-            birthdate: undefined,
-            debut: undefined,
-            height: undefined,
-            weight: undefined,
-            careerLength: -1,
-        };
-
         const firstResultHTML = await fetchPlayerPage(playerName);
         let $ = cheerio.load(firstResultHTML);
         const name = $('#meta h1').text().trim();
@@ -162,11 +146,11 @@ async function getPlayer(playerName: string)
 
         const statContainer = $('#div_per_game tbody > tr');
 
-        let stats: any = grabPlayerSats(statContainer, $);
+        let stats: any = await grabPlayerSats(statContainer, $);
 
         // Now get the career stats and load them
         const careerStatsRow = $('#div_per_game tfoot > tr').first();
-        stats.career = grabCareerStats(careerStatsRow, $);
+        stats.career = await grabCareerStats(careerStatsRow, $);
 
         // Finally, get the player's NBA.com id and headshot
         let picture = '';

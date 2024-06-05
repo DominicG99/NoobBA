@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-function grabPlayerSats(statRows, $)
+async function grabPlayerSats(statRows, $)
 {
     let stats = {};
     statRows.each((index, row) =>

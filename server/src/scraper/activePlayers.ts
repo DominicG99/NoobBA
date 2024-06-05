@@ -1,4 +1,4 @@
-export let allPlayers: string[] = [
+export let activePlayers: string[] = [
     "Precious Achiuwa",
     "Steven Adams",
     "Bam Adebayo",
