@@ -2,6 +2,8 @@ import cheerio from "cheerio";
 import { fetchPlayerPage } from "./fetchPlayerPage.js";
 import { grabPlayerSats } from "./grabPlayerStats.js";
 import { grabCareerStats } from "./grabCareerStats.js";
+import { grabAdvancedStats } from "./grabAdvancedStats.js";
+import { grabCareerAdvancedStats } from "./grabCareerAdvancedStats.js";
 
 export async function getPlayer(playerName: string)
 {
@@ -152,6 +154,14 @@ export async function getPlayer(playerName: string)
         const careerStatsRow = $('#div_per_game tfoot > tr').first();
         stats.career = await grabCareerStats(careerStatsRow, $);
 
+        // Grab the player's advanced stats
+        const advancedStatsRows = $('#div_advanced tbody > tr');
+        const advancedStats = await grabAdvancedStats(advancedStatsRows, $);
+
+        // Grab the player's career advanced stats
+        const careerAdvancedStatsRow = $('#div_advanced tfoot > tr').first();
+        const careerAdvancedStats = await grabCareerAdvancedStats(careerAdvancedStatsRow, $);
+
         // Finally, get the player's NBA.com id and headshot
         let picture = '';
         let playerID = $('#div_stats-nba-com > div > a:nth-child(1)').attr('href');
@@ -213,6 +223,8 @@ export async function getPlayer(playerName: string)
             allStars,
             accolades,
             stats,
+            advancedStats,
+            careerAdvancedStats,
             shootingHand,
             college,
             birthplace,

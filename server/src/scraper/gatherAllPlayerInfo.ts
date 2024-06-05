@@ -2,7 +2,7 @@ import { activePlayers } from './activePlayers.js';
 import { getPlayer } from './getPlayer.js';
 import fs from 'fs';
 
-async function gatherFivePlayerInfos()
+async function gatherPlayerInfos()
 {
     let playerInfoArray: any = [];
     let timeoutOffset = 0;
@@ -27,4 +27,4 @@ async function gatherFivePlayerInfos()
 }
 
 
-gatherFivePlayerInfos();
+gatherPlayerInfos();
