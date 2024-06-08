@@ -12,22 +12,79 @@ datasource db {
 }
 
 model Player {
-  player_id   Int     @id @default(autoincrement())
-  player_name String
-  player_ppg  Decimal @db.Decimal(4, 1)
-  player_rpg  Decimal @db.Decimal(4, 1)
-  player_apg  Decimal @db.Decimal(4, 1)
+  player_id   Int           @id @default(autoincrement())
+  first_name  String
+  last_name   String
+  team        Team          @relation(fields: [team_id], references: [id])
   team_id     Int
-  team        Team    @relation(name: "team_player_relation", fields: [team_id], references: [team_id])
+  careerStats CareerStats?
+  seasonStats SeasonStats[]
 }
 
 model Team {
-  team_id      Int      @id @default(autoincrement())
-  team_name    String
-  team_players Player[] @relation(name: "team_player_relation")
+  id              Int        @id @default(autoincrement())
+  team_name       String
+  short_name      String
+  city            String
+  state           String
+  country         String
+  players         Player[]
+  conference      Conference @relation(fields: [conference_name], references: [conference_name])
+  conference_name String
 }
 
-model Test {
-  test_id        Int    @id @default(autoincrement())
-  test_name      String
+model Conference {
+  conference_name String @id
+  teams           Team[] // One-to-many relationship}
+}
+
+model CareerStats {
+  player_id    Int    @id
+  player       Player @relation(fields: [player_id], references: [player_id])
+  gamesPlayed  Int
+  gamesStarted Int
+  mpg          Float
+  fgm          Int
+  fga          Int
+  threePM      Int
+  threePA      Int
+  twoPM        Int
+  twoPA        Int
+  ftm          Int
+  fta          Int
+  orb          Int
+  drb          Int
+  trb          Int
+  ast          Int
+  stl          Int
+  bpg          Float
+  tnv          Float
+  fouls        Int
+  ppg          Float
+}
+
+model SeasonStats {
+  season       String @id
+  player_id    Int
+  player       Player @relation(fields: [player_id], references: [player_id])
+  gamesPlayed  Int
+  gamesStarted Int
+  mpg          Float
+  fgm          Int
+  fga          Int
+  threePM      Int
+  threePA      Int
+  twoPM        Int
+  twoPA        Int
+  ftm          Int
+  fta          Int
+  orb          Int
+  drb          Int
+  trb          Int
+  ast          Int
+  stl          Int
+  bpg          Float
+  tnv          Float
+  fouls        Int
+  ppg          Float
 }

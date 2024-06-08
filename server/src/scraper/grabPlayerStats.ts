@@ -40,19 +40,11 @@ async function grabPlayerSats(statRows, $)
                 fga: parseFloat(rowData.find('[data-stat="fga_per_g"]').text().trim()),
                 fg_pct: parseFloat(rowData.find('[data-stat="fg_pct"]').text().trim()),
                 '3p': parseFloat(rowData.find('[data-stat="fg3_per_g"]').text().trim()),
-                '3pa': parseFloat(
-                    rowData.find('[data-stat="fg3a_per_g"]').text().trim()
-                ),
-                '3p_pct': parseFloat(
-                    rowData.find('[data-stat="fg3_pct"]').text().trim()
-                ),
+                '3pa': parseFloat(rowData.find('[data-stat="fg3a_per_g"]').text().trim()),
+                '3p_pct': parseFloat(rowData.find('[data-stat="fg3_pct"]').text().trim()),
                 '2p': parseFloat(rowData.find('[data-stat="fg2_per_g"]').text().trim()),
-                '2pa': parseFloat(
-                    rowData.find('[data-stat="fg2a_per_g"]').text().trim()
-                ),
-                '2p_pct': parseFloat(
-                    rowData.find('[data-stat="fg2_pct"]').text().trim()
-                ),
+                '2pa': parseFloat(rowData.find('[data-stat="fg2a_per_g"]').text().trim()),
+                '2p_pct': parseFloat(rowData.find('[data-stat="fg2_pct"]').text().trim()),
                 efg: parseFloat(rowData.find('[data-stat="efg_pct"]').text().trim()),
                 ft: parseFloat(rowData.find('[data-stat="ft_per_g"]').text().trim()),
                 fta: parseFloat(rowData.find('[data-stat="fta_per_g"]').text().trim()),
