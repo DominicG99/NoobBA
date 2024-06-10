@@ -16,11 +16,8 @@ async function gatherPlayerInfos()
         {
             playerInfoArray.push(JSON.parse(info));
         }
-        //await wait(5000);
-        if (i === 0)
-        {
-            break;
-        }
+        await wait(5000);
+        console.log("getting player " + activePlayers[i]);
     }
 
     await fs.writeFileSync('playerData.json', JSON.stringify(playerInfoArray));

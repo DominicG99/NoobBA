@@ -12,13 +12,22 @@ datasource db {
 }
 
 model Player {
-  player_id   Int           @id @default(autoincrement())
-  first_name  String
-  last_name   String
-  team        Team          @relation(fields: [team_id], references: [id])
-  team_id     Int
-  careerStats CareerStats?
-  seasonStats SeasonStats[]
+  player_id           Int                  @id @default(autoincrement())
+  first_name          String
+  last_name           String
+  college             String?
+  jerseyNumber        Int[]
+  height              String
+  weight              Int
+  shootingHand        Float
+  careerLength        Int
+  team                Team                 @relation(fields: [team_id], references: [id])
+  team_id             Int
+  positions           String[]
+  careerStats         CareerStats?
+  advancedCareerStats CareerAdvancedStats?
+  seasonStats         SeasonStats[]
+  picture             String
 }
 
 model Team {
@@ -87,4 +96,29 @@ model SeasonStats {
   tnv          Float
   fouls        Int
   ppg          Float
+}
+
+model CareerAdvancedStats {
+  player_id    Int    @id
+  player       Player @relation(fields: [player_id], references: [player_id])
+  per          Int
+  tsPct        Float
+  fg3PerFgaPct Float
+  ftr          Float
+  orbPct       Float
+  drbPct       Float
+  trbPct       Float
+  astPct       Float
+  stlPct       Float
+  blkPct       Float
+  tovPct       Float
+  usgPct       Float
+  ows          Float
+  dws          Float
+  ws           Float
+  wsPer48      Float
+  obpm         Float
+  dbpm         Float
+  bpm          Float
+  vorp         Float
 }
