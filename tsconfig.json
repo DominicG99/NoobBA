@@ -7,7 +7,8 @@
 		"rootDir": "./server",
 		"strict": true, // Enable all strict type-checking options.
 		"esModuleInterop": true, // This will allow you to use default imports with CommonJS modules.
-		"skipLibCheck": true // this option will skip type checking all .d.ts files.
+		"skipLibCheck": true,// this option will skip type checking all .d.ts files.
+		"resolveJsonModule": true //allows us to import json modules
 	},
 	"ts-node": {
 		"esm": true

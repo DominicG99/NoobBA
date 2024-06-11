@@ -7,26 +7,31 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DB_URI")
-  directUrl = env("DIRECT_URI")
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Player {
-  player_id           Int                  @id @default(autoincrement())
+  player_id           Int                   @id @default(autoincrement())
   first_name          String
   last_name           String
   college             String?
   jerseyNumber        Int[]
   height              String
   weight              Int
-  shootingHand        Float
+  shootingHand        String
   careerLength        Int
-  team                Team                 @relation(fields: [team_id], references: [id])
-  team_id             Int
+  team                Team?                 @relation(fields: [team_id], references: [id])
+  team_id             Int?
+  draftTeam           String
   positions           String[]
+  accolades           String?
+  allStarCount        Int?
+  championships       Int?
   careerStats         CareerStats?
   advancedCareerStats CareerAdvancedStats?
   seasonStats         SeasonStats[]
+  advancedSeasonStats SeasonAdvancedStats[]
   picture             String
 }
 
@@ -73,9 +78,9 @@ model CareerStats {
 }
 
 model SeasonStats {
-  season       String @id
+  season_id    String
+  age          Int
   player_id    Int
-  player       Player @relation(fields: [player_id], references: [player_id])
   gamesPlayed  Int
   gamesStarted Int
   mpg          Float
@@ -96,6 +101,21 @@ model SeasonStats {
   tnv          Float
   fouls        Int
   ppg          Float
+  season       Season @relation(fields: [season_id], references: [season])
+  player       Player @relation(fields: [player_id], references: [player_id])
+
+  @@id([season_id, player_id])
+}
+
+model Season {
+  season              String                @id
+  mvp                 String
+  dpoy                String
+  roy                 String
+  mip                 String
+  smoy                String
+  PlayerStats         SeasonStats[]
+  PlayerAdvancedStats SeasonAdvancedStats[]
 }
 
 model CareerAdvancedStats {
@@ -121,4 +141,34 @@ model CareerAdvancedStats {
   dbpm         Float
   bpm          Float
   vorp         Float
+}
+
+model SeasonAdvancedStats {
+  season_id    String
+  age          Int
+  player_id    Int
+  per          Int
+  tsPct        Float
+  fg3PerFgaPct Float
+  ftr          Float
+  orbPct       Float
+  drbPct       Float
+  trbPct       Float
+  astPct       Float
+  stlPct       Float
+  blkPct       Float
+  tovPct       Float
+  usgPct       Float
+  ows          Float
+  dws          Float
+  ws           Float
+  wsPer48      Float
+  obpm         Float
+  dbpm         Float
+  bpm          Float
+  vorp         Float
+  season       Season @relation(fields: [season_id], references: [season])
+  player       Player @relation(fields: [player_id], references: [player_id])
+
+  @@id([season_id, player_id])
 }
