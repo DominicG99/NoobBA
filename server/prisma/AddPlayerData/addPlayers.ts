@@ -42,6 +42,7 @@ for (let i = 0; i < numPlayers; i++)
     {
         console.error("Player not found", error);
     }
+
     if (playerExistsAlready === false)
     {
         try
@@ -71,7 +72,6 @@ for (let i = 0; i < numPlayers; i++)
             console.error("Couldn't create new player", error);
         }
     }
-
 }
 
 // function getAllSeasonStats(stats)
