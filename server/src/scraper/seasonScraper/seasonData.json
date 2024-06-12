@@ -1,0 +1,23 @@
+[
+    { "seasonID": "2003-04", "mvp": "Kevin Garnett", "roy": "LeBron James", "dpoy": "Metta World Peace", "mip": "Zach Randolph", "smoy": "Antawn Jamison" },
+    { "seasonID": "2004-05", "mvp": "Steve Nash", "roy": "Emeka Okafor", "dpoy": "Ben Wallace", "mip": "Bobby Simmons", "smoy": "Ben Gordon" },
+    { "seasonID": "2005-06", "mvp": "Steve Nash", "roy": "Chris Paul", "dpoy": "Ben Wallace", "mip": "Boris Diaw", "smoy": "Mike Miller" },
+    { "seasonID": "2006-07", "mvp": "Dirk Nowitzki", "roy": "Brandon Roy", "dpoy": "Marcus Camby", "mip": "Monta Ellis", "smoy": "Leandro Barbosa" },
+    { "seasonID": "2007-08", "mvp": "Kobe Bryant", "roy": "Kevin Durant", "dpoy": "Kevin Garnett", "mip": "Hedo Türkoğlu", "smoy": "Manu Ginóbili" },
+    { "seasonID": "2008-09", "mvp": "LeBron James", "roy": "Derrick Rose", "dpoy": "Dwight Howard", "mip": "Danny Granger", "smoy": "Jason Terry" },
+    { "seasonID": "2009-10", "mvp": "LeBron James", "roy": "Tyreke Evans", "dpoy": "Dwight Howard", "mip": "Aaron Brooks", "smoy": "Jamal Crawford" },
+    { "seasonID": "2010-11", "mvp": "Derrick Rose", "roy": "Blake Griffin", "dpoy": "Dwight Howard", "mip": "Kevin Love", "smoy": "Lamar Odom" },
+    { "seasonID": "2011-12", "mvp": "LeBron James", "roy": "Kyrie Irving", "dpoy": "Tyson Chandler", "mip": "Ryan Anderson", "smoy": "James Harden" },
+    { "seasonID": "2012-13", "mvp": "LeBron James", "roy": "Damian Lillard", "dpoy": "Marc Gasol", "mip": "Paul George", "smoy": "J.R. Smith" },
+    { "seasonID": "2013-14", "mvp": "Kevin Durant", "roy": "Michael Carter-Williams", "dpoy": "Joakim Noah", "mip": "Goran Dragić", "smoy": "Jamal Crawford" },
+    { "seasonID": "2014-15", "mvp": "Stephen Curry", "roy": "Andrew Wiggins", "dpoy": "Kawhi Leonard", "mip": "Jimmy Butler", "smoy": "Lou Williams" },
+    { "seasonID": "2015-16", "mvp": "Stephen Curry", "roy": "Karl-Anthony Towns", "dpoy": "Kawhi Leonard", "mip": "CJ McCollum", "smoy": "Jamal Crawford" },
+    { "seasonID": "2016-17", "mvp": "Russell Westbrook", "roy": "Malcolm Brogdon", "dpoy": "Draymond Green", "mip": "Giannis Antetokounmpo", "smoy": "Eric Gordon" },
+    { "seasonID": "2017-18", "mvp": "James Harden", "roy": "Ben Simmons", "dpoy": "Rudy Gobert", "mip": "Victor Oladipo", "smoy": "Lou Williams" },
+    { "seasonID": "2018-19", "mvp": "Giannis Antetokounmpo", "roy": "Luka Dončić", "dpoy": "Rudy Gobert", "mip": "Pascal Siakam", "smoy": "Lou Williams" },
+    { "seasonID": "2019-20", "mvp": "Giannis Antetokounmpo", "roy": "Ja Morant", "dpoy": "Giannis Antetokounmpo", "mip": "Brandon Ingram", "smoy": "Montrezl Harrell" },
+    { "seasonID": "2020-21", "mvp": "Nikola Jokić", "roy": "LaMelo Ball", "dpoy": "Rudy Gobert", "mip": "Julius Randle", "smoy": "Jordan Clarkson" },
+    { "seasonID": "2021-22", "mvp": "Nikola Jokić", "roy": "Scottie Barnes", "dpoy": "Marcus Smart", "mip": "Ja Morant", "smoy": "Tyler Herro" },
+    { "seasonID": "2022-23", "mvp": "Joel Embiid", "roy": "Paolo Banchero", "dpoy": "Jaren Jackson Jr.", "mip": "Lauri Markkanen", "smoy": "Malcolm Brogdon" },
+    { "seasonID": "2023-24", "mvp": "Nikola Jokić", "roy": "Victor Wembanyama", "dpoy": "Rudy Gobert", "mip": "Tyrese Maxey", "smoy": "Naz Reid" }
+]

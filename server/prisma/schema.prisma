@@ -82,24 +82,28 @@ model SeasonStats {
   age          Int
   player_id    Int
   gamesPlayed  Int
-  gamesStarted Int
+  gamesStarted Int?
   mpg          Float
-  fgm          Int
-  fga          Int
-  threePM      Int
-  threePA      Int
-  twoPM        Int
-  twoPA        Int
-  ftm          Int
-  fta          Int
-  orb          Int
-  drb          Int
-  trb          Int
-  ast          Int
-  stl          Int
+  fgm          Float
+  fga          Float
+  fgPct        Float?
+  threePM      Float
+  threePA      Float
+  threePct     Float?
+  twoPM        Float
+  twoPA        Float
+  twoPct       Float?
+  ftm          Float
+  fta          Float
+  ftPct        Float?
+  orb          Float
+  drb          Float
+  trb          Float
+  ast          Float
+  stl          Float
   bpg          Float
   tnv          Float
-  fouls        Int
+  fouls        Float
   ppg          Float
   season       Season @relation(fields: [season_id], references: [season])
   player       Player @relation(fields: [player_id], references: [player_id])
@@ -122,25 +126,25 @@ model CareerAdvancedStats {
   player_id    Int    @id
   player       Player @relation(fields: [player_id], references: [player_id])
   per          Int
-  tsPct        Float
-  fg3PerFgaPct Float
-  ftr          Float
-  orbPct       Float
-  drbPct       Float
-  trbPct       Float
-  astPct       Float
-  stlPct       Float
-  blkPct       Float
-  tovPct       Float
-  usgPct       Float
-  ows          Float
-  dws          Float
-  ws           Float
-  wsPer48      Float
-  obpm         Float
-  dbpm         Float
-  bpm          Float
-  vorp         Float
+  tsPct        Float?
+  fg3PerFgaPct Float?
+  ftr          Float?
+  orbPct       Float?
+  drbPct       Float?
+  trbPct       Float?
+  astPct       Float?
+  stlPct       Float?
+  blkPct       Float?
+  tovPct       Float?
+  usgPct       Float?
+  ows          Float?
+  dws          Float?
+  ws           Float?
+  wsPer48      Float?
+  obpm         Float?
+  dbpm         Float?
+  bpm          Float?
+  vorp         Float?
 }
 
 model SeasonAdvancedStats {

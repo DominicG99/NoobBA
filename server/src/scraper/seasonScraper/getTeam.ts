@@ -1,6 +1,6 @@
 import cheerio from "cheerio";
 
-export async function fetchPlayerPage(season: string): Promise<object> 
+export async function getSeason(season: string): Promise<object> 
 {
     const linkPrefix: string = "https://www.basketball-reference.com/leagues/NBA_";
     const linkEnding: string = ".html";
@@ -42,5 +42,3 @@ export async function fetchPlayerPage(season: string): Promise<object>
 
     return outputObject;
 }
-
-console.log(await fetchPlayerPage("2010"));
