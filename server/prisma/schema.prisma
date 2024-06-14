@@ -38,7 +38,7 @@ model Player {
 model Team {
   id              Int        @id @default(autoincrement())
   team_name       String
-  short_name      String
+  short_name      String?
   city            String
   state           String
   country         String
@@ -125,7 +125,7 @@ model Season {
 model CareerAdvancedStats {
   player_id    Int    @id
   player       Player @relation(fields: [player_id], references: [player_id])
-  per          Int
+  per          Int?
   tsPct        Float?
   fg3PerFgaPct Float?
   ftr          Float?
@@ -149,28 +149,27 @@ model CareerAdvancedStats {
 
 model SeasonAdvancedStats {
   season_id    String
-  age          Int
   player_id    Int
   per          Int
-  tsPct        Float
-  fg3PerFgaPct Float
-  ftr          Float
-  orbPct       Float
-  drbPct       Float
-  trbPct       Float
-  astPct       Float
-  stlPct       Float
-  blkPct       Float
-  tovPct       Float
-  usgPct       Float
-  ows          Float
-  dws          Float
-  ws           Float
-  wsPer48      Float
-  obpm         Float
-  dbpm         Float
-  bpm          Float
-  vorp         Float
+  tsPct        Float?
+  fg3PerFgaPct Float?
+  ftr          Float?
+  orbPct       Float?
+  drbPct       Float?
+  trbPct       Float?
+  astPct       Float?
+  stlPct       Float?
+  blkPct       Float?
+  tovPct       Float?
+  usgPct       Float?
+  ows          Float?
+  dws          Float?
+  ws           Float?
+  wsPer48      Float?
+  obpm         Float?
+  dbpm         Float?
+  bpm          Float?
+  vorp         Float?
   season       Season @relation(fields: [season_id], references: [season])
   player       Player @relation(fields: [player_id], references: [player_id])
 

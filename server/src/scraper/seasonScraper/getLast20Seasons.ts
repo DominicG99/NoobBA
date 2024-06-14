@@ -1,4 +1,4 @@
-import { getSeason } from "./getTeam.js";
+import { getSeason } from "./getSeason.js";
 import fs from 'fs';
 
 

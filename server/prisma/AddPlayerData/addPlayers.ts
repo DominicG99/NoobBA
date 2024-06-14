@@ -32,6 +32,32 @@ interface PlayerSeasonStats
     ppg: number
 }
 
+interface PlayerAdvancedSeasonStats
+{
+    seasonID: string,
+    per: number,
+    playerID: number,
+    tsPct: number,
+    fg3PerFgaPct: number,
+    ftr: number,
+    orbPct: number,
+    drbPct: number,
+    trbPct: number,
+    astPct: number,
+    stlPct: number,
+    blkPct: number,
+    tovPct: number,
+    usgPct: number,
+    ows: number,
+    dws: number,
+    ws: number,
+    wsPer48: number,
+    obpm: number,
+    dbpm: number,
+    bpm: number,
+    vorp: number
+}
+
 
 const prisma = new PrismaClient()
 
@@ -107,13 +133,15 @@ for (let i = 0; i < numPlayers; i++)
     //Create season stats
     if (player?.player_id !== undefined)
     {
-        let playerID: number = player?.player_id;
-        let playerSeasonStats: PlayerSeasonStats[] = getAllSeasonStats(allPlayerData[i].stats, playerID);
+        const playerID: number = player?.player_id;
+
+        //Add player's season stats....
+        const playerSeasonStats: PlayerSeasonStats[] = getAllSeasonStats(allPlayerData[i].stats, playerID);
         for (let i = 0; i < playerSeasonStats.length; i++)
         {
             if (playerSeasonStats[i].seasonID != undefined)
             {
-                let seasonID: string = await findSeasonID(playerSeasonStats[i].seasonID);
+                const seasonID: string = await findSeasonID(playerSeasonStats[i].seasonID);
                 const seasonStats = await prisma.seasonStats.findFirst({
                     where: {
                         player_id: player.player_id,
@@ -169,6 +197,60 @@ for (let i = 0; i < numPlayers; i++)
                 }
             }
         }
+
+
+        //Add players season advanced stats...
+        const playerAdvancedSeasonStats: PlayerAdvancedSeasonStats[] = getAllAdvancedSeasonStats(allPlayerData[i].advancedStats, playerID);
+        for (let i = 0; i < playerAdvancedSeasonStats.length; i++)
+        {
+            if (playerAdvancedSeasonStats[i].seasonID != undefined)
+            {
+                const seasonID: string = await findSeasonID(playerAdvancedSeasonStats[i].seasonID);
+                const advancedSeasonStats = await prisma.seasonAdvancedStats.findFirst({
+                    where: {
+                        player_id: player.player_id,
+                        season_id: playerAdvancedSeasonStats[i].seasonID,
+                    },
+                });
+                if (advancedSeasonStats == null)
+                {
+                    try
+                    {
+                        await prisma.seasonAdvancedStats.create({
+                            data: {
+                                season_id: seasonID,
+                                player_id: playerID,
+                                per: playerAdvancedSeasonStats[i].per,
+                                tsPct: playerAdvancedSeasonStats[i].tsPct,
+                                fg3PerFgaPct: playerAdvancedSeasonStats[i].fg3PerFgaPct,
+                                ftr: playerAdvancedSeasonStats[i].ftr,
+                                orbPct: playerAdvancedSeasonStats[i].orbPct,
+                                drbPct: playerAdvancedSeasonStats[i].drbPct,
+                                trbPct: playerAdvancedSeasonStats[i].trbPct,
+                                astPct: playerAdvancedSeasonStats[i].astPct,
+                                stlPct: playerAdvancedSeasonStats[i].stlPct,
+                                blkPct: playerAdvancedSeasonStats[i].blkPct,
+                                tovPct: playerAdvancedSeasonStats[i].tovPct,
+                                usgPct: playerAdvancedSeasonStats[i].usgPct,
+                                ows: playerAdvancedSeasonStats[i].ows,
+                                dws: playerAdvancedSeasonStats[i].dws,
+                                ws: playerAdvancedSeasonStats[i].ws,
+                                wsPer48: playerAdvancedSeasonStats[i].wsPer48,
+                                obpm: playerAdvancedSeasonStats[i].obpm,
+                                dbpm: playerAdvancedSeasonStats[i].dbpm,
+                                bpm: playerAdvancedSeasonStats[i].bpm,
+                                vorp: playerAdvancedSeasonStats[i].vorp,
+                            }
+                        });
+                    }
+                    catch (error)
+                    {
+                        console.error("Couldn't create advanced season stats for player " + player.first_name + " " + player.last_name, error);
+                    }
+                }
+            }
+        }
+
     }
 }
 
@@ -214,6 +296,42 @@ function getAllSeasonStats(stats: object, playerID: number): PlayerSeasonStats[]
         }
     }
     return seasonStats;
+}
+
+function getAllAdvancedSeasonStats(advancedStats: object, playerID: number): PlayerAdvancedSeasonStats[]
+{
+    const numSeasons = Object.keys(advancedStats).length;
+    let advancedSeasonStats: PlayerAdvancedSeasonStats[] = [];
+
+    for (const [season, statValues] of Object.entries(advancedStats))
+    {
+        const obj = {
+            seasonID: season,
+            playerID: playerID,
+            per: statValues.per,
+            tsPct: statValues.ts_pct,
+            fg3PerFgaPct: statValues.fg3a_per_fga_pct,
+            ftr: statValues.ftr,
+            orbPct: statValues.orb_pct,
+            drbPct: statValues.drb_pct,
+            trbPct: statValues.trb_pct,
+            astPct: statValues.ast_pct,
+            stlPct: statValues.stl_pct,
+            blkPct: statValues.blk_pct,
+            tovPct: statValues.tov_pct,
+            usgPct: statValues.usg_pct,
+            ows: statValues.ows,
+            dws: statValues.dws,
+            ws: statValues.ws,
+            wsPer48: statValues.ws_per_48,
+            obpm: statValues.obpm,
+            dbpm: statValues.dbpm,
+            bpm: statValues.bpm,
+            vorp: statValues.vorp,
+        }
+        advancedSeasonStats.push(obj);
+    }
+    return advancedSeasonStats;
 }
 
 async function findSeasonID(seasonID: string | undefined): Promise<string>
